@@ -2,41 +2,57 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <title>投票系統</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>雲端投票系統</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>投票系統</h1>
 
+<div class="container">
+  <div id="login-screen" class="screen active">
+    <h1>系統登入</h1>
+    <form id="login-form">
+      <div class="input-group">
+        <input type="email" id="email-input" placeholder="電子信箱" required>
+      </div>
+      <div class="input-group">
+        <input type="password" id="password-input" placeholder="密碼" required>
+      </div>
+      <button type="submit">登入</button>
+      <div id="login-message"></div>
+    </form>
+  </div>
+
+  <div id="vote-screen" class="screen">
+    <div class="user-header">
+      <span id="user-email"></span>
+      <button id="logout-button">登出</button>
+    </div>
+
+    <h2>目前投票選項</h2>
     <form id="vote-form">
-      <p>請選擇一個選項：</p>
-      <label>
-        <input type="radio" name="option" value="A" required />
-        選項 A
-      </label>
-      <label>
-        <input type="radio" name="option" value="B" />
-        選項 B
-      </label>
-      <label>
-        <input type="radio" name="option" value="C" />
-        選項 C
-      </label>
-
+      <div id="options-list">
+        </div>
       <button type="submit">送出投票</button>
     </form>
 
-    <p id="message"></p>
+    <hr>
 
-    <h2>目前投票結果</h2>
+    <h3>新增選項</h3>
+    <div class="new-option-row">
+      <input type="text" id="new-option-input" placeholder="輸入新選項...">
+      <button id="add-option-button">新增</button>
+    </div>
+
+    <hr>
+
+    <h3>目前結果</h3>
     <ul id="results">
-      <!-- 由 JS 動態填入 -->
-    </ul>
+      </ul>
   </div>
+</div>
 
-  <!-- Supabase CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><!-- [web:7] -->
-  <script src="app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
